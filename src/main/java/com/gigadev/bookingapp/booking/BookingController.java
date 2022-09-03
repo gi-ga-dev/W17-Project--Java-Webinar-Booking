@@ -1,5 +1,6 @@
 package com.gigadev.bookingapp.booking;
 
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,11 +20,16 @@ public class BookingController {
 	@Autowired
 	private BookingService bookingServ;
 	
-	// http://localhost:8080/booking
+	// http://localhost:8080/bookings
 	@GetMapping
 	public List<Booking> searchAllBookings() {		
 		return bookingServ.searchAllBookings();
 	}	
+	
+	@GetMapping("/searchByUserAndValidity")
+	public List<Booking> searchByUserAndValidity(@RequestParam Long id, @RequestParam LocalDate validity) {
+		return bookingServ.searchByUserAndValidity(id, validity);
+	}
 	
 	@PostMapping
 	public void create(@RequestBody Booking booking) {
