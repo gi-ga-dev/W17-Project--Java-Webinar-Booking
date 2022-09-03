@@ -2,6 +2,8 @@ package com.gigadev.bookingapp.workstation;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,7 +30,7 @@ public class Workstation {
 	@ManyToOne
 	private Building building;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "workstation", cascade = CascadeType.PERSIST)
 	private List<Booking> bookings = new ArrayList<>();
 	
 	public Workstation(Long uniqueCode, String description, WorkstationType type, int participants) {

@@ -2,6 +2,8 @@ package com.gigadev.bookingapp.building;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +24,7 @@ public class Building {
 	private String address;
 	private String city;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "building", cascade = CascadeType.PERSIST)
 	private List<Workstation> workstations = new ArrayList<>();
 	
 	public Building(String name, String address, String city) {
@@ -31,5 +33,9 @@ public class Building {
 		this.address = address;
 		this.city = city;
 	}	
+	
+	public void addWorkstation(Workstation workstation) {
+		workstations.add(workstation);
+	}
 	
 }

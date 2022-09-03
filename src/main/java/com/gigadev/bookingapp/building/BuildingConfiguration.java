@@ -22,16 +22,21 @@ public class BuildingConfiguration {
 	@Bean("Building1")
 	@Scope("singleton")
 	public Building newBuilding1() {
-		Building b1 = new Building("Palazzo Pitti", "Piazza de' Pitti, 1", "Firenze");	
-		buildingServ.create(b1);		
+		//return new Building("Palazzo Pitti", "Piazza de' Pitti, 1", "Firenze");	
+		Building b1 = new Building();
+		b1.setName("Palazzo Pitti");
+		b1.setAddress("Piazza de' Pitti, 1");
+		b1.setCity("Firenze");
+		b1.addWorkstation(w1);
+		b1.addWorkstation(w2);
+		b1.addWorkstation(w3);
+		b1.addWorkstation(w4);
 		return b1;
 	}
 	
 	@Bean("Building2")
 	@Scope("singleton")
 	public Building newBuilding2() {
-		Building b2 = new Building("Palazzo Madama", "Piazza Madama", "Roma");
-		buildingServ.create(b2);
-		return b2;
+		return new Building("Palazzo Madama", "Piazza Madama", "Roma");
 	}
 }
