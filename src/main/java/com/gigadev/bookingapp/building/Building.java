@@ -25,12 +25,11 @@ public class Building {
 	@OneToMany
 	private List<Workstation> workstations = new ArrayList<>();
 	
-	public Building(String name, String address, String city, List<Workstation> workstations) {
+	public Building(String name, String address, String city) {
 		super();
 		this.name = name;
 		this.address = address;
 		this.city = city;
-		this.workstations = workstations;
 	}	
 	
 }

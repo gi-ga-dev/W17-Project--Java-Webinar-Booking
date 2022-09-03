@@ -31,13 +31,12 @@ public class Workstation {
 	@OneToMany
 	private List<Booking> bookings = new ArrayList<>();
 	
-	public Workstation(Long uniqueCode, String description, WorkstationType type, int participants, Building building) {
+	public Workstation(Long uniqueCode, String description, WorkstationType type, int participants) {
 		super();
 		this.uniqueCode = uniqueCode;
 		this.description = description;
 		this.type = type;
 		this.participants = participants;
-		this.building = building;
 	}
 		
 }

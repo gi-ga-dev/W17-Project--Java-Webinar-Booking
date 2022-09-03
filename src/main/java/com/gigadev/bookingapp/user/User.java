@@ -28,12 +28,11 @@ public class User {
 	@OneToMany
 	private List<Booking> bookings = new ArrayList<>();
 	
-	public User(String username, String name, String email, List<Booking> bookings) {
+	public User(String username, String name, String email) {
 		super();
 		this.username = username;
 		this.name = name;
 		this.email = email;
-		this.bookings = bookings;
 	}
 	
 }
