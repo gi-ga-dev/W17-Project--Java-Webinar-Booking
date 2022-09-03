@@ -7,28 +7,28 @@ import org.springframework.context.annotation.Scope;
 @Configuration
 public class WorkstationConfiguration {
 
-	@Bean("Workstation1")
+	@Bean("workstation1")
 	@Scope("singleton")
 	public Workstation newWorkstation1() {
-		return new Workstation((long) 123, "Room for Digital Marketing Webinar", WorkstationType.OPENSPACE, 25);
+		return new Workstation("Room for Digital Marketing Webinar", WorkstationType.PRIVATE, 1);
 	}
 	
-	@Bean("Workstation2")
+	@Bean("workstation2")
 	@Scope("singleton")
 	public Workstation newWorkstation2() {
-		return new Workstation((long) 456, "Room for Senior Assistance", WorkstationType.MEETING_ROOM, 50);
+		return new Workstation("Room for Senior Assistance", WorkstationType.MEETING_ROOM, 50);
 	}
 	
-	@Bean("Workstation3")
+	@Bean("workstation3")
 	@Scope("singleton")
 	public Workstation newWorkstation3() {
-		return new Workstation((long) 789, "Room for Leisure Activity", WorkstationType.PRIVATE, 5);
+		return new Workstation("Room for Leisure Activity", WorkstationType.OPENSPACE, 25);
 	}
 	
-	@Bean("Workstation4")
+	@Bean("workstation4")
 	@Scope("singleton")
 	public Workstation newWorkstation4() {
-		return new Workstation((long) 159, "Room for Morning Brainstorming", WorkstationType.OPENSPACE, 15);
+		return new Workstation("Room for Morning Brainstorming", WorkstationType.OPENSPACE, 15);
 	}
 	
 }

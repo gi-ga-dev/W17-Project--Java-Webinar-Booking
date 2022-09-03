@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import com.gigadev.bookingapp.workstation.Workstation;
 import lombok.Data;
@@ -16,6 +18,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Building {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -24,6 +27,7 @@ public class Building {
 	private String address;
 	private String city;
 	
+	// se all'interno di un building trova le postazioni, con persist salva anche quelle
 	@OneToMany(mappedBy = "building", cascade = CascadeType.PERSIST)
 	private List<Workstation> workstations = new ArrayList<>();
 	
