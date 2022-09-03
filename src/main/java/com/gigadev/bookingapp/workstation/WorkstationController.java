@@ -21,12 +21,12 @@ public class WorkstationController {
 	private WorkstationService workstationServ;
 
 	// http://localhost:8080/workstations
-//	@GetMapping
-//	public List<Workstation> searchAllWorkstations() {
-//		return workstationServ.searchAllWorkstations();
-//	}
-	
 	@GetMapping
+	public List<Workstation> searchAllWorkstations() {
+		return workstationServ.searchAllWorkstations();
+	}
+	
+	@GetMapping("/searchByCityAndType")
 	public List<Workstation> searchByCityAndType(@RequestParam String city, @RequestParam WorkstationType type) {
 		return workstationServ.searchWorkstation(city, type);
 	}
