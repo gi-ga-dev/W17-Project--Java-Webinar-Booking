@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import com.gigadev.bookingapp.workstation.Workstation;
 import lombok.Data;
@@ -28,7 +29,9 @@ public class Building {
 	private String city;
 	
 	// se all'interno di un building trova le postazioni, con persist salva anche quelle
-	@OneToMany(mappedBy = "building", cascade = CascadeType.PERSIST)
+	@OneToMany(cascade = CascadeType.PERSIST)
+	// per riportare building_id (del table dell'associazione building-workstation creato a parte) nel table workstation
+	@JoinColumn(name = "building_id")
 	private List<Workstation> workstations = new ArrayList<>();
 	
 	public Building(String name, String address, String city) {

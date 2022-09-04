@@ -34,11 +34,11 @@ public class BookingController {
 	}	
 	
 	@GetMapping("/searchByUserAndValidity")
-	public List<Booking> searchByUserAndValidity(@RequestParam Long id, @RequestParam LocalDate validity) {
+	public int searchByUserAndValidity(@RequestParam Long id, @RequestParam LocalDate validity) {
 		try { return bookingServ.searchByUserAndValidity(id, validity); } 
 		catch (Exception e) {
 			log.error("Searching bookings by user and validity unsuccessful");
-			return new ArrayList<Booking>();
+			return 404;
 		}		
 	}
 	

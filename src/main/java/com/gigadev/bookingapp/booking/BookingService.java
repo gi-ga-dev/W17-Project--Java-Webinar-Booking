@@ -20,25 +20,25 @@ public class BookingService {
 	}
 	
 	// cerca tutte le prenotazioni effettuate
-	public List<Booking> searchByUserAndValidity(Long id, LocalDate validity) {
-		List<Booking> retList = bookingRepo.findByUserAndValidity(id, validity);
-		log.info("@@@ The user has booked " + retList.size() + "workstation/s");
+	public int searchByUserAndValidity(Long id, LocalDate validity) {
+		int retList = bookingRepo.findByUserAndValidity(id, validity);
+		log.info("@@@ The user has booked " + retList + "workstation/s");
 		return retList;
 	}
 
-	public List<Booking> searchByWorkstationAndValidity(Long id, LocalDate validity) {
+	public int searchByWorkstationAndValidity(Long id, LocalDate validity) {
 		return bookingRepo.findByWorkstationAndValidity(id, validity);
 	}
 
 	public void create(Booking booking) {
 		// utilizzare il ritorno del metodo della query per passarla all'attributo
-		List<Booking> bookings = searchByUserAndValidity(booking.getUser().getId(), booking.getValidity());
-		List<Booking> bookings2 = searchByWorkstationAndValidity(booking.getWorkstation().getId(),
+		int bookings = searchByUserAndValidity(booking.getUser().getId(), booking.getValidity());
+		int bookings2 = searchByWorkstationAndValidity(booking.getWorkstation().getId(),
 				booking.getValidity());
 		// se non ha prenotato in quel giorno
-		if (bookings == null || bookings.size() == 0) {
+		if (bookings == 0) {
 			// se il numero attuale di prenotazioni della workstation e' inferiore al numero massimo dei posti salva nel db
-			if (bookings2 == null || bookings2.size() < booking.getWorkstation().getParticipants()) {
+			if (bookings2 < booking.getWorkstation().getParticipants()) {
 				bookingRepo.save(booking);
 				log.info("---> " + booking.getUser().getUsername() + " has booked the workstation "
 						+ booking.getWorkstation().getDescription());
